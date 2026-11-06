@@ -1,100 +1,129 @@
-# Progress tracking and assessment
+# Progress tracking, learner records and the learning portfolio
 
-## Session checkpoint
+Scope: the checkpoint (core block and corpus block), the learner profile, continuity rules, the error log and expression bank, the review queue, exercise status, the final learning portfolio and corpus tracking.
+Not here: error-code definitions (references/training-mechanisms.md §4); sentence locators (references/sentence-analysis.md §2); exam scoring and readiness decisions (references/exam-and-assessment.md §4); writing-quality scores and evaluation records (references/writing-quality-scorecard.md).
 
-At the end of every teaching round, provide a compact checkpoint:
+## 1. Checkpoint
+
+End every round with a compact checkpoint: the current position, the next sentence, the exercises and any line that changed in this round. 保存进度 / Save checkpoint gives the full checkpoint, with every line that applies, including the learner profile and, in corpus mode, the corpus block; the learner can paste it into a new session. Leave out fields that do not apply yet.
 
 ```text
-Paper:
-Literature corpus status:
-Paper writing score / grade:
-Author writing-contribution evidence:
-Author-associated writing profile:
-Current section:
-Page / paragraph:
-Sentences completed:
-Last completed sentence locator:
-Next sentence to start:
-New vocabulary:
-New collocations:
-New sentence patterns:
-Near-synonym items awaiting response:
-Chinglish items awaiting response:
-Imitation items awaiting response:
-Recurring learner errors:
-Current learning level / next difficulty:
-Stage exam score / band:
-Stage exam report location or checkpoint:
-Next improvement target:
+Paper: <title, year, DOI>
+source_version: <pdf | jats-xml | html | plain-text>
+Mode: <close reading | corpus building | paper rating | assessment | review>
+Learner profile: L1 <...>; English level <...>; goal <...>; explanation language <...>; pace <...>
+Depth preference: <by signals | full | light>
+Current position: <section> | completed up to <locator> ("<opening words>")
+Next sentence: <locator>
+Exercises: <item id> <mechanism> <status>; ...
+New vocabulary / collocations / sentence patterns: ...
+Error codes so far: <code> ×<count>; ...; SCI ×<count>
+Review queue: <item or code>; ...
+Stage exam: <stage> <score>/100 <band> <readiness decision>
+Next improvement target: <weakest dimension or competency>; <most frequent code>
+Writing-quality evaluation: <where the evaluation record is, or "none">
 ```
 
-Use a short opening phrase from the last completed sentence as a locator, not as a substitute for the document's page and paragraph position.
+`source_version` is one of:
 
-## Continuity rules
+| Value | Meaning |
+|---|---|
+| `pdf` | The publisher PDF; page numbers can be given |
+| `jats-xml` | JATS full text, for example from PubMed Central or Europe PMC; no page numbers |
+| `html` | A publisher web page; no page numbers |
+| `plain-text` | Pasted or extracted text; formatting cannot be checked |
 
-- Continue from the first uncompleted sentence.
-- Do not repeat completed analysis unless the user requests review.
-- Do not claim to remember progress across sessions unless it is present in the current conversation, a memory source, or a saved progress file.
-- If progress is missing, state what is known and ask for the checkpoint or relevant file. Do not guess.
-- If a user asks to review, prioritize weak items and recurring errors, not only the most recent material.
+Exercise status is one of:
 
-## Section assessment
+| Status | Meaning |
+|---|---|
+| `pending` | Shown and awaiting the learner's answer |
+| `attempted` | Answered; feedback given |
+| `shown-without-attempt` | The answer was shown before an attempt (references/exam-and-assessment.md §5); not counted as mastered |
+| `skipped` | The learner chose not to answer; not counted as mastered |
 
-At the end of a subsection, assess:
+Do not copy writing-quality scores into the checkpoint. When a paper has an evaluation record, the checkpoint says where it is.
 
-1. vocabulary and near-synonym discrimination;
-2. collocation selection;
-3. Chinese-to-English sentence translation;
-4. Chinglish correction;
-5. sentence-pattern imitation;
-6. short paragraph writing.
+In corpus mode, add a corpus block:
 
-Do not reveal answers before the learner responds. After the attempt, give explanations and a score where appropriate.
+```text
+Corpus: <n> selected / target <n>; reserve pool <n>
+This paper: rank <n>; <direct match | adjacent field | methods>; <journal tier>
+Papers studied: <n>; stage exams completed: <n>
+Next paper: <rank and title>
+```
 
-## Final learning portfolio
+## 2. Learner profile
 
-At the end of the paper, consolidate:
+Fill the profile once, at the first session; afterwards update it only when the learner changes something. The full checkpoint carries it into a new session (§1).
 
-- academic vocabulary bank;
-- collocation bank;
-- near-synonym comparison bank;
-- reusable sentence-pattern bank;
-- paragraph-structure examples;
-- personal Chinglish error log;
-- imitation attempts and revisions;
-- writing scores and progress;
-- field-specific templates;
-- final review exercises with answer key.
+| Field | Content |
+|---|---|
+| First language (L1) | Decides which transfer errors to expect; "Chinglish" practice assumes Chinese |
+| English level | The learner's own description, or an estimate marked as an estimate |
+| Learning goal | For example reading papers, writing a manuscript, or an exam |
+| Explanation language | Default Chinese |
+| Pace preference | Depth preference and practice load |
+| Research field | Used for practice scenarios; the corpus profile card is in references/literature-discovery.md §1 |
 
-## Scoring guidance
+Do not guess these fields. Use the defaults in SKILL.md, Start a paper, and say which values are defaults.
 
-Use the 100-point rubric below for paragraph writing:
+## 3. Continuity rules
 
-| Dimension | Points | What to evaluate |
-|---|---:|---|
-| Grammar | 20 | Sentence structure, tense, agreement, clause control |
-| Academic vocabulary | 20 | Precision, register, appropriate word choice |
-| Collocation and naturalness | 20 | Verb-noun patterns, prepositions, idiomatic academic usage |
-| Logical organization | 20 | Cohesion, progression, contrast, evidence and inference |
-| Scientific accuracy | 20 | Faithfulness to evidence, correct terminology, calibrated claims |
+- Continue from the first uncompleted sentence. Do not repeat completed analysis unless the learner asks for review.
+- Do not claim to remember progress across sessions unless it is present in this conversation, a memory source or a saved progress file.
+- If progress is missing, state what is known and ask for the checkpoint or the relevant file. Do not guess.
+- A short opening phrase of the last completed sentence can confirm the position; it never replaces the locator.
+- In 复习 / Review, put weak items, the review queue and recurring errors first, not only the most recent material.
 
-Scores should be diagnostic, not punitive. Explain the reason for each deduction and identify the single highest-value improvement for the next task.
+## 4. Error log and expression bank
 
+Log each error found in learner writing:
 
-For the 20-paper corpus workflow, also track paper rank, DOI, journal tier, JCR verification, paper writing score/grade, author-role verification, documented writing-contribution evidence, author-associated writing profile, and whether the paper has been studied and examined.
+```text
+<locator or task id> | learner's original | <code> | corrected version | reason | reusable rule or collocation | seen before: <yes, count | no>
+```
 
+Count `SCI` separately from the language codes. The expression bank collects vocabulary, collocations, near-synonym contrasts and sentence patterns by category, each with its source locator. 查看错误档案 / Error log and 查看表达库 / Expression bank display these records.
 
-## Literature corpus tracking
+## 5. Review queue
 
-For each of the 20 candidate papers, track:
-- paper rank and DOI;
-- direct-match / adjacent-field / methods classification;
-- journal tier and verified JCR year/category/quartile;
-- sections actually assessed for writing quality;
-- six-dimension writing-quality score and A/B/C/not-assessable grade;
-- first-author and corresponding-author roles;
-- CRediT writing contribution evidence;
-- author-associated writing profile and its limitations;
+Add to the queue:
+
+- items answered wrongly;
+- items with status `shown-without-attempt`;
+- error codes logged again after an earlier occurrence.
+
+When the queue is not empty, each round takes its extra item from it (references/training-mechanisms.md §6.1), and stage exams cover queue items first (references/exam-and-assessment.md §2.2). An entry leaves the queue when the learner answers an equivalent item correctly in a later round.
+
+## 6. Final learning portfolio
+
+When the paper is complete, consolidate:
+
+1. academic vocabulary list;
+2. collocation bank;
+3. near-synonym comparison bank;
+4. reusable sentence-pattern bank;
+5. paragraph-structure examples;
+6. personal error log, by code;
+7. imitation exercises and revised versions;
+8. writing-performance summary;
+9. field-specific writing templates;
+10. comprehensive review exercises with an answer key;
+11. the cumulative stage-score trend (references/exam-and-assessment.md §7).
+
+Cite section, page, paragraph or sentence identifiers only when the document supports them. Do not invent source locations.
+
+## 7. Corpus tracking
+
+For each paper in a corpus, track:
+
+- rank and DOI;
+- direct match, adjacent field, or methods;
+- journal tier and the JCR edition, category and quartile, or unverified;
+- the sections assessed and the evidence_scope;
+- the six dimension scores, the grade and the status (`preliminary` or `final`), or not assessable;
+- first-author and corresponding-author roles, single-paper labels and the cross-paper profile, with their limitations;
 - learning status and stage-exam scores.
 
-Do not treat author nationality or native-speaker status as a criterion or evidence field.
+Author nationality and native language are not criteria and are not recorded.
